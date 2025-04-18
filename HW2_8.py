@@ -7,42 +7,6 @@ class DatabaseModel:
    def save(cls):
       cls._conn.commit()
    
-   @classmethod
-   def create_table(cls):
-       cls._cursor.execute("""
-             CREATE TABLE IF NOT EXISTS students(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            full_name VARCHAR (50) NOT NULL,
-            age INT DEFAULT NULL
-                             
-        )               
-                            
-     """)
-       
-       cls._cursor.execute("""
-             CREATE TABLE IF NOT EXISTS courses(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT,
-            teacher TEXT
-                             
-        )               
-                            
-     """)
-       
-       cls._cursor.execute("""
-             CREATE TABLE IF NOT EXISTS enrollments(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            student_id INTEGER,
-            course_id INTEGER,
-            grades TEXT
-                             
-        )               
-                            
-     """) 
-       
-       cls.save()
-
-
 
 
 class Person:
@@ -61,6 +25,8 @@ class Person:
    
    def set_age(self,age):
       self._age = age
+
+
    
 class Student(Person, DatabaseModel):
    def __init__(self, full_name, age):
